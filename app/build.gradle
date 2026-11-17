@@ -1,0 +1,38 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.dshgo.shellpol'
+    compileSdk 33
+    defaultConfig {
+        applicationId 'com.dshgo.shellpol'
+        minSdk 26
+        targetSdk 28
+        versionCode 3
+        versionName '1.0.2'
+        testInstrumentationRunner 'android.test.InstrumentationTestRunner'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile '../AndroidManifest.xml'
+            assets.srcDirs = ['../assets']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes { release { minifyEnabled false } }
+    packagingOptions {
+        jniLibs { useLegacyPackaging false }
+        resources { excludes += ['/META-INF/{AL2.0,LGPL2.1}'] }
+    }
+}
+
+dependencies {
+    compileOnly 'de.robv.android.xposed:api:82'
+    implementation 'org.luckypray:dexkit:2.2.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.21'
+    implementation 'com.google.flatbuffers:flatbuffers-java:23.5.26'
+    implementation 'dev.rikka.ndk.thirdparty:cxx:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+}
