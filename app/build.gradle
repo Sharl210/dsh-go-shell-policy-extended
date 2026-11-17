@@ -3,6 +3,7 @@ plugins { id 'com.android.application' }
 android {
     namespace 'com.dshgo.shellpol'
     compileSdk 33
+    buildFeatures { buildConfig true }
     defaultConfig {
         applicationId 'com.dshgo.shellpol'
         minSdk 26
@@ -11,21 +12,10 @@ android {
         versionName '1.0.2'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
-    sourceSets {
-        main {
-            manifest.srcFile '../AndroidManifest.xml'
-            assets.srcDirs = ['../assets']
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+    sourceSets { main { manifest.srcFile '../AndroidManifest.xml'; assets.srcDirs = ['../assets'] } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
     buildTypes { release { minifyEnabled false } }
-    packagingOptions {
-        jniLibs { useLegacyPackaging false }
-        resources { excludes += ['/META-INF/{AL2.0,LGPL2.1}'] }
-    }
+    packagingOptions { jniLibs { useLegacyPackaging false }; resources { excludes += ['/META-INF/{AL2.0,LGPL2.1}'] } }
 }
 
 dependencies {
