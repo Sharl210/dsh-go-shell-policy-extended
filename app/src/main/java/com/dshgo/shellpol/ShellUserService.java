@@ -1,0 +1,4 @@
+package com.dshgo.shellpol;
+import android.os.Bundle;import android.os.IBinder;import android.os.Binder;import android.os.Parcel;
+/** Shizuku UserService Binder; intentionally not an Android Service component. */
+public final class ShellUserService extends Binder{private static final String D="io.github.ccch1mneyyy.dsh_app.phone.shell.IAndroidShell";private static final int EXEC=IBinder.FIRST_CALL_TRANSACTION,DESTROY=16777115;public ShellUserService(){attachInterface(null,D);}@Override protected boolean onTransact(int code,Parcel data,Parcel reply,int flags){try{if(code==DESTROY){data.enforceInterface(D);AndroidShellMain.destroyExternal();reply.writeNoException();System.exit(0);return true;}if(code!=EXEC)return super.onTransact(code,data,reply,flags);data.enforceInterface(D);Bundle r=AndroidShellMain.handleExternal(data.readBundle(getClass().getClassLoader()));reply.writeNoException();reply.writeBundle(r);return true;}catch(Throwable e){return false;}}}
