@@ -1,0 +1,3 @@
+package com.dshgo.shellpol;
+import org.junit.Test;import static org.junit.Assert.assertFalse;import static org.junit.Assert.assertTrue;
+public class PolicyLogicTest{@Test public void onlyAdbAndShizukuOwnersAreTrusted(){assertTrue(PolicyLogic.validIdentity("adb",2000));assertTrue(PolicyLogic.validIdentity("shizuku",0));assertTrue(PolicyLogic.validIdentity("shizuku",2000));}@Test public void otherBackendsAndUidsAreNotTrusted(){assertFalse(PolicyLogic.validIdentity("adb",0));assertFalse(PolicyLogic.validIdentity("adb",10229));assertFalse(PolicyLogic.validIdentity("shizuku",10229));assertFalse(PolicyLogic.validIdentity("",2000));assertFalse(PolicyLogic.validIdentity(null,2000));}}
